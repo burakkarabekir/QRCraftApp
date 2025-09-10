@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.camera
+package com.bksd.qrcraftapp.feature.qr.ui.camera
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -22,9 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.util.Corner
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.util.drawFrameCorner
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.feature.qr.ui.camera.util.Corner
+import com.bksd.qrcraftapp.feature.qr.ui.camera.util.drawFrameCorner
 import kotlin.math.min
 
 @Composable

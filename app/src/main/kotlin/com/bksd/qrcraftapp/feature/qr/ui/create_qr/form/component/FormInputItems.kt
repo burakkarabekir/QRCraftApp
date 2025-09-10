@@ -1,9 +1,9 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form.component
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.KeyboardType
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.util.UiText
+import com.bksd.qrcraftapp.core.ui.util.UiText
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
 
 enum class FormInputType(val hint: UiText) {
@@ -25,7 +25,7 @@ data class FormInputItem(
     val required: Boolean = true,
     val keyboard: KeyboardOptions = KeyboardOptions.Default,
     val singleLine: Boolean = true,
-    val value: String = "",
+    val value: String = UiText.Empty.toString(),
 )
 
 fun buildItems(type: QRType) = when (type) {

@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.camera.model
+package com.bksd.qrcraftapp.feature.qr.ui.camera.model
 
 data class DetectedQRUi(
     val rawValue: String?,

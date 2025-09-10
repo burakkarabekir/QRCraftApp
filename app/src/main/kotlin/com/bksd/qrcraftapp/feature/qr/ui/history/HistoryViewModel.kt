@@ -1,9 +1,9 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history
+package com.bksd.qrcraftapp.feature.qr.ui.history
 
 import androidx.lifecycle.viewModelScope
-import com.bksd.qrcraftapp.core.presentation.base.BaseViewModel
+import com.bksd.qrcraftapp.core.ui.base.BaseViewModel
 import com.bksd.qrcraftapp.feature.qr.domain.data_source.QRDataSource
-import com.bksd.qrcraftapp.feature.qr.presentation.history.mapper.toQRUi
+import com.bksd.qrcraftapp.feature.qr.ui.history.mapper.toQRUi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch

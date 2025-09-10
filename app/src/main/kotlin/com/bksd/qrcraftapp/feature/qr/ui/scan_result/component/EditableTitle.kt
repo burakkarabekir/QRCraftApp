@@ -1,6 +1,6 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.component
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.component
 
-import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicTextField
@@ -18,14 +18,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.AppColors.editableTextPlaceholder
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.AppColors.editableTextPlaceholder
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.UiText
 
 private const val TEXT_MAX_LENGTH = 32
 
@@ -36,6 +36,7 @@ fun EditableTitle(
     onValueChange: (String) -> Unit = {},
     onCommit: (String) -> Unit = {},
     startInEditMode: Boolean = false,
+    isEditable: Boolean = true,
 ) {
     var localText by remember { mutableStateOf(text) }
     var isEditing by remember { mutableStateOf(startInEditMode) }
@@ -61,15 +62,13 @@ fun EditableTitle(
             modifier = modifier
                 .fillMaxWidth()
                 .wrapContentWidth(Alignment.CenterHorizontally)
-                .pointerInput(Unit) {
-                    detectTapGestures(
-                        onTap = {
-                            if (!isEditing) {
-                                isEditing = true
-                                localText = ""
-                            }
-                        }
-                    )
+                .clickable(
+                    enabled = isEditable,
+                    interactionSource = null,
+                    indication = null
+                ) {
+                    isEditing = true
+                    localText = UiText.Empty.toString()
                 }
         )
     } else {

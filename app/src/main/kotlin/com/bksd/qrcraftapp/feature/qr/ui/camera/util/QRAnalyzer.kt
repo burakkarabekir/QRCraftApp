@@ -1,10 +1,10 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.camera.util
+package com.bksd.qrcraftapp.feature.qr.ui.camera.util
 
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper.toDetectedQRUi
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.DetectedQRUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toDetectedQRUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.DetectedQRUi
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode

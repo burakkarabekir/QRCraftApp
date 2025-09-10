@@ -1,8 +1,8 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.component
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.component
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 
 @Composable
 fun ScanResultTitle(
@@ -10,12 +10,14 @@ fun ScanResultTitle(
     isEditing: Boolean,
     onValueChange: (String) -> Unit,
     onCommit: (String) -> Unit,
+    isEditable: Boolean,
 ) {
     EditableTitle(
         text = title,
         onValueChange = onValueChange,
         onCommit = onCommit,
-        startInEditMode = isEditing
+        startInEditMode = isEditing,
+        isEditable = isEditable
     )
 }
 
@@ -27,7 +29,8 @@ fun ScanResultTitlePreview() {
             title = "Sample Title",
             isEditing = false,
             onValueChange = {},
-            onCommit = {}
+            onCommit = {},
+            isEditable = true
         )
     }
 }

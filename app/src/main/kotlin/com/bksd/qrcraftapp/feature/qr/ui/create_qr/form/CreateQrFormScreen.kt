@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.form
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,16 +26,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.ObserveAsEvents
-import com.bksd.qrcraftapp.core.presentation.util.UiText
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form.component.CreateQRFormCard
-import com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form.component.buildItems
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
-import com.bksd.qrcraftapp.feature.qr.presentation.model.ScanResultScreenType
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
+import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.CreateQRFormCard
+import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.buildItems
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
+import com.bksd.qrcraftapp.feature.qr.ui.model.ScanResultScreenType
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultUi
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -57,11 +58,9 @@ fun CreateQrFormScreen(
                         rawValue = event.rawValue,
                         displayValue = event.displayValue,
                         type = event.qrType,
-                        id = event.id,
-                        title = event.qrType.text.asString(context),
-                        timestamp = null,
+                        id = event.id ?: 0L,
+                        title = context.getString(event.qrType.textRes),
                         qrSource = QRSource.GENERATED,
-
                     ),
                 )
             )
@@ -92,7 +91,7 @@ fun CreateQrFormContent(
                 ),
                 title = {
                     Text(
-                        text = uiModel.title.asString(),
+                        text = stringResource(uiModel.title),
                         style = MaterialTheme.typography.titleLarge,
                         textAlign = TextAlign.Center
                     )
@@ -140,7 +139,14 @@ private fun Preview() {
         CreateQrFormContent(
             uiModel = CreateQRFormUiModel(
                 items = buildItems(QRType.CONTACT),
-                title = UiText.Dynamic(QRType.CONTACT.name)
+                title = QRTypeUi(
+                    type = QRType.CONTACT,
+                    textRes = QRType.CONTACT.toUi().textRes,
+                    icon = 0,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ).textRes,
+                isValid = false,
             ),
             onAction = {},
         )

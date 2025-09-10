@@ -1,15 +1,15 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.form
 
 import android.graphics.Bitmap
 import androidx.lifecycle.viewModelScope
-import com.bksd.qrcraftapp.core.presentation.base.BaseViewModel
-import com.bksd.qrcraftapp.core.presentation.util.toBase64
+import com.bksd.qrcraftapp.core.ui.base.BaseViewModel
+import com.bksd.qrcraftapp.core.ui.util.toBase64
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.QRTypeUi
-import com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form.component.FormInputItem
-import com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form.component.FormInputType
-import com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form.component.buildItems
-import com.bksd.qrcraftapp.feature.qr.presentation.util.QRCodeGenerator
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
+import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.FormInputItem
+import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.FormInputType
+import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.buildItems
+import com.bksd.qrcraftapp.feature.qr.ui.util.QRCodeGenerator
 import kotlinx.coroutines.launch
 
 class CreateQrFormViewModel(
@@ -18,7 +18,7 @@ class CreateQrFormViewModel(
     CreateQrFormState(
         uiModel = CreateQRFormUiModel(
             items = buildItems(type.type),
-            title = type.text,
+            title = type.textRes,
         )
     )
 ) {

@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.form
 
 sealed interface CreateQrFormAction {
     data object OnNavigateBackClick : CreateQrFormAction

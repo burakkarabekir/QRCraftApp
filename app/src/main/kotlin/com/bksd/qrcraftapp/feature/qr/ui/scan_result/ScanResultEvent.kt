@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result
 
 import android.graphics.Bitmap
 

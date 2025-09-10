@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.core.presentation.design_system.loading
+package com.bksd.qrcraftapp.core.ui.design_system.loading
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 
 @Composable
 fun AppLoading(

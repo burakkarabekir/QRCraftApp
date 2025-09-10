@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.component
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,15 +12,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bksd.qrcraftapp.core.presentation.util.UiText
+import com.bksd.qrcraftapp.core.ui.util.UiText
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper.toUi
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultCardActions
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultCardState
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultCardStyle
-
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultCardActions
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultCardState
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultCardStyle
 
 @Composable
 fun ScanResultCardContent(
@@ -48,10 +48,11 @@ fun ScanResultCardContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             ScanResultTitle(
-                title = state.title.ifBlank { state.resultType.text.asString() },
+                title = state.title.ifBlank { stringResource(state.resultType.textRes) },
                 isEditing = state.isEditing,
                 onValueChange = actions.onTitleValueChange,
-                onCommit = actions.readyToSave
+                onCommit = actions.readyToSave,
+                isEditable = state.isEditable
             )
 
             Spacer(Modifier.height(10.dp))

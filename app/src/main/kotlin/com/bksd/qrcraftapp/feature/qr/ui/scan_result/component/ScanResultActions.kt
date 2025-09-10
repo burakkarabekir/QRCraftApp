@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.component
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -14,8 +14,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.button.AppButton
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.button.AppButton
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 
 @Composable
 fun ScanResultActions(

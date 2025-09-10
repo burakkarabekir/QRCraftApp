@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.component
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,11 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bksd.qrcraftapp.core.presentation.design_system.expandable_text.ExpandableText
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.UiText
+import com.bksd.qrcraftapp.core.ui.design_system.expandable_text.ExpandableText
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.UiText
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.QRTypeUi
 
 @Composable
 fun ScanResultDescription(
@@ -71,7 +70,6 @@ fun ScanResultDescriptionPreview() {
         )
     }
 }
-
 
 
 @Preview(showBackground = true)

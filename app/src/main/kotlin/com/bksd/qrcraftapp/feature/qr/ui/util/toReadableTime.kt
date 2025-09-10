@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.util
+package com.bksd.qrcraftapp.feature.qr.ui.util
 
 import java.time.Instant
 import java.time.ZoneId

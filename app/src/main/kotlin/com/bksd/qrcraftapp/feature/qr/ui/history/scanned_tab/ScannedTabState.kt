@@ -1,6 +1,6 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab
+package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab
 
 data class ScannedTabState(
     val showOptionSheet: Boolean = false,
-    val selectedItemIdForOptions: Int? = null,
+    val selectedItemIdForOptions: Long? = null,
 )

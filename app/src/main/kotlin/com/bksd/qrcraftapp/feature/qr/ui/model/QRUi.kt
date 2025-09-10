@@ -1,17 +1,18 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.model
+package com.bksd.qrcraftapp.feature.qr.ui.model
 
-import com.bksd.qrcraftapp.core.presentation.util.toBase64
+import com.bksd.qrcraftapp.core.ui.util.toBase64
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.QRTypeUi
-import com.bksd.qrcraftapp.feature.qr.presentation.util.QRCodeGenerator.encodeBitmap
-import com.bksd.qrcraftapp.feature.qr.presentation.util.toReadableTime
-import com.bksd.qrcraftapp.feature.qr.presentation.util.toZxingFormat
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
+import com.bksd.qrcraftapp.feature.qr.ui.util.QRCodeGenerator.encodeBitmap
+import com.bksd.qrcraftapp.feature.qr.ui.util.toReadableTime
+import com.bksd.qrcraftapp.feature.qr.ui.util.toZxingFormat
 import java.time.Instant
+import java.util.UUID
 
 data class QRUi(
-    val id: Long? = null,
+    val id: Long = UUID.randomUUID().mostSignificantBits and Long.MAX_VALUE,
     val type: QRTypeUi,
-    val title: String,
+    val title: String? = null,
     val rawValue: String,
     val displayValue: String,
     val format: Int = 0,
@@ -23,5 +24,6 @@ data class QRUi(
         rawValue,
         toZxingFormat(format),
     )
+
     fun generatedQRPayload(): String = getQRBitmap()?.toBase64().orEmpty()
 }

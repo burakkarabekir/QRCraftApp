@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.component
+package com.bksd.qrcraftapp.feature.qr.ui.history.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 
 @Composable
 fun EmptyTabContent(

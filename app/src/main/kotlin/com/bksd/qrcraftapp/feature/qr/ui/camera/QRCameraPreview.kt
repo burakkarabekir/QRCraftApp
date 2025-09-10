@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.camera
+package com.bksd.qrcraftapp.feature.qr.ui.camera
 
 import android.content.Context
 import android.view.ViewGroup.LayoutParams
@@ -21,9 +21,9 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.DetectedQRUi
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.util.QRAnalyzer
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.DetectedQRUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.util.QRAnalyzer
 import timber.log.Timber
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

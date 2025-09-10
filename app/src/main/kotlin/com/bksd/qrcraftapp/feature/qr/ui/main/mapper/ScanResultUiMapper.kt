@@ -1,26 +1,29 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.main.mapper
+package com.bksd.qrcraftapp.feature.qr.ui.main.mapper
 
-import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.domain.model.QR
+import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper.toUi
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.DetectedQRUi
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
-import com.bksd.qrcraftapp.feature.qr.presentation.model.ScanResultScreenType
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.DetectedQRUi
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
+import com.bksd.qrcraftapp.feature.qr.ui.model.ScanResultScreenType
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultUi
 
-fun DetectedQRUi.toScanResultUi() = ScanResultUi(
-    screenType = ScanResultScreenType.SCAN_RESULT,
-    qrUi = QRUi(
-        type = QRType.entries.find { it.type == type }?.toUi() ?: QRType.TEXT.toUi(),
-        title = "",
-        rawValue = rawValue.orEmpty(),
-        displayValue = displayValue.orEmpty(),
-        format = format,
-        timestamp = null,
-        qrSource = QRSource.SCANNED,
-    ),
-)
+fun DetectedQRUi.toScanResultUi(): ScanResultUi {
+    val type = QRType.entries.find { it.type == type }?.toUi() ?: QRType.TEXT.toUi()
+
+    return ScanResultUi(
+        screenType = ScanResultScreenType.SCAN_RESULT,
+        qrUi = QRUi(
+            type = type,
+            rawValue = rawValue.orEmpty(),
+            displayValue = displayValue.orEmpty(),
+            format = format,
+            timestamp = null,
+            qrSource = QRSource.SCANNED,
+        ),
+    )
+}
 
 fun ScanResultUi.toQR() = QR(
     type = qrUi.type.type,
@@ -30,5 +33,5 @@ fun ScanResultUi.toQR() = QR(
     timestamp = qrUi.timestamp ?: java.time.Instant.now(),
     qrSource = QRSource.SCANNED,
     format = qrUi.format,
-    qrId = qrUi.id
+    id = qrUi.id
 )

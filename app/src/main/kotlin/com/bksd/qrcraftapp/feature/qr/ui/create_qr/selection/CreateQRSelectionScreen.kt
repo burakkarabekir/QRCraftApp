@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3WindowSizeClassApi::class)
 
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.selection
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.selection
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
@@ -30,12 +30,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.ObserveAsEvents
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper.toUi
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.QRTypeUi
-import com.bksd.qrcraftapp.feature.qr.presentation.create_qr.selection.component.CreateQRCard
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
+import com.bksd.qrcraftapp.feature.qr.ui.create_qr.selection.component.CreateQRCard
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

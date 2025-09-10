@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.selection
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.selection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

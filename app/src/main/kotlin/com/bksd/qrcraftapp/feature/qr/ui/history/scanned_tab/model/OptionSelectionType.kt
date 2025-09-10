@@ -1,8 +1,8 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.model
+package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.model
 
 import androidx.compose.ui.graphics.Color
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.AppColors
+import com.bksd.qrcraftapp.core.ui.design_system.theme.AppColors
 
 enum class OptionSelectionType(val iconRes: Int, val textRes: Int, val contentColorRes: Color) {
     DELETE(

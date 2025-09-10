@@ -1,10 +1,10 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab
+package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab
 
 import androidx.lifecycle.viewModelScope
-import com.bksd.qrcraftapp.core.presentation.base.BaseViewModel
+import com.bksd.qrcraftapp.core.ui.base.BaseViewModel
 import com.bksd.qrcraftapp.feature.qr.domain.data_source.QRDataSource
-import com.bksd.qrcraftapp.feature.qr.presentation.util.QRCodeGenerator.encodeBitmap
-import com.bksd.qrcraftapp.feature.qr.presentation.util.toZxingFormat
+import com.bksd.qrcraftapp.feature.qr.ui.util.QRCodeGenerator.encodeBitmap
+import com.bksd.qrcraftapp.feature.qr.ui.util.toZxingFormat
 import kotlinx.coroutines.launch
 
 class ScannedTabViewModel(
@@ -57,7 +57,7 @@ class ScannedTabViewModel(
         }
     }
 
-    private fun delete(id: Int) = viewModelScope.launch {
+    private fun delete(id: Long) = viewModelScope.launch {
         qrDataSource.delete(id)
     }
 }

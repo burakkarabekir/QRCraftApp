@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.component
+package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.background
@@ -21,8 +21,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.model.OptionSelectionType
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.model.OptionSelectionType
 
 @Composable
 fun OptionSheetRow(

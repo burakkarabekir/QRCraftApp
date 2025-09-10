@@ -1,1 +1,5 @@
 /build
+*.db
+app/schemas/*.db
+keystore.properties
+*.jks

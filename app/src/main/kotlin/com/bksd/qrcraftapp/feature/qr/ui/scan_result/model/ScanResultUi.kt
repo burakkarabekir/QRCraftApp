@@ -1,9 +1,9 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.model
 
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
-import com.bksd.qrcraftapp.feature.qr.presentation.model.ScanResultScreenType
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
+import com.bksd.qrcraftapp.feature.qr.ui.model.ScanResultScreenType
 
 data class ScanResultUi(
-    val screenType: ScanResultScreenType = ScanResultScreenType.SCAN_RESULT,
+    val screenType: ScanResultScreenType,
     val qrUi: QRUi,
 )

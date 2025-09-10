@@ -1,18 +1,19 @@
-package com.bksd.campusechojournal.core.database.di
+package com.bksd.qrcraftapp.core.database.di
 
 import androidx.room.Room
-import com.bksd.campusechojournal.core.database.EchoDatabase
+import com.bksd.qrcraftapp.core.database.QRDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
 val databaseModule = module {
-    single<EchoDatabase> {
+    single<QRDatabase> {
         Room.databaseBuilder(
             context = androidApplication(),
-            klass = EchoDatabase::class.java,
-            name = "echos.db"
-        ).build()
+            klass = QRDatabase::class.java,
+            name = "qr-craft.db"
+        )
+            .build()
     }
 
-    single { get<EchoDatabase>().echoDao }
+    single { get<QRDatabase>().qrDao }
 }

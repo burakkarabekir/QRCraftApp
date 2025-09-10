@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.camera.util
+package com.bksd.qrcraftapp.feature.qr.ui.camera.util
 
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color

@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.util
+package com.bksd.qrcraftapp.feature.qr.ui.util
 
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.zxing.BarcodeFormat

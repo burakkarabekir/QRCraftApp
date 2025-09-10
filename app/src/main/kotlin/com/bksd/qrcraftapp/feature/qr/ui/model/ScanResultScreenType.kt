@@ -1,3 +1,3 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.model
+package com.bksd.qrcraftapp.feature.qr.ui.model
 
 enum class ScanResultScreenType { SCAN_RESULT, PREVIEW }

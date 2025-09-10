@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.core.presentation.util
+package com.bksd.qrcraftapp.core.ui.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory.decodeByteArray

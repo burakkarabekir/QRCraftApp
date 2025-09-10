@@ -1,6 +1,6 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper
+package com.bksd.qrcraftapp.feature.qr.ui.camera.mapper
 
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.DetectedQRUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.DetectedQRUi
 import com.google.mlkit.vision.barcode.common.Barcode
 import timber.log.Timber
 

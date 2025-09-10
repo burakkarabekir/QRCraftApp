@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -28,17 +28,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.ObserveAsEvents
-import com.bksd.qrcraftapp.core.presentation.util.UiText
-import com.bksd.qrcraftapp.core.presentation.util.copyToClipboard
-import com.bksd.qrcraftapp.core.presentation.util.shareQRCode
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
+import com.bksd.qrcraftapp.core.ui.util.UiText
+import com.bksd.qrcraftapp.core.ui.util.copyToClipboard
+import com.bksd.qrcraftapp.core.ui.util.shareQRCode
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper.toUi
-import com.bksd.qrcraftapp.feature.qr.presentation.model.ScanResultScreenType
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.component.ScanResultCard
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultCardActions
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultCardState
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
+import com.bksd.qrcraftapp.feature.qr.ui.model.ScanResultScreenType
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.component.ScanResultCard
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultCardActions
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultCardState
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -120,9 +120,10 @@ fun ScanResultContent(
             ScanResultCard(
                 state = ScanResultCardState(
                     resultType = type,
-                    title = uiModel.editedText ?: type.text.asString(),
+                    title = uiModel.editedText ?: stringResource(type.textRes),
                     resultDescription = UiText.Dynamic(uiModel.displayValue),
                     isEditing = uiModel.isEditing,
+                    isEditable = uiModel.screenType == ScanResultScreenType.SCAN_RESULT,
                     image = uiModel.barcodeImage
                 ),
                 actions = ScanResultCardActions(
@@ -147,8 +148,8 @@ private fun Preview() {
                 id = 0,
                 barcodeImage = null,
                 displayValue = "123123",
-                editedText = "",
-                type = QRType.TEXT
+                editedText = UiText.Empty.toString(),
+                type = QRType.TEXT,
             ),
         )
     }

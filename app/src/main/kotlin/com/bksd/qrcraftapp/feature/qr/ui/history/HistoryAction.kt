@@ -1,6 +1,6 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history
+package com.bksd.qrcraftapp.feature.qr.ui.history
 
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 
 sealed interface HistoryAction {
     data object Start : HistoryAction

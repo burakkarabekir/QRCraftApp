@@ -1,6 +1,6 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.form
 
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.QRTypeUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
 
 sealed interface CreateQrFormEvent {
     data object OnNavigateBack : CreateQrFormEvent

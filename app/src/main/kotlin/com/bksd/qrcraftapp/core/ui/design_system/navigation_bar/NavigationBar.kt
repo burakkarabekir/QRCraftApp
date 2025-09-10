@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.core.presentation.design_system.navigation_bar
+package com.bksd.qrcraftapp.core.ui.design_system.navigation_bar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -36,7 +36,7 @@ import androidx.navigation3.runtime.NavKey
 import com.bksd.qrcraftapp.app.navigation.CreateQRScreenRoute
 import com.bksd.qrcraftapp.app.navigation.HistoryScreenRoute
 import com.bksd.qrcraftapp.app.navigation.MainScreenRoute
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 
 @Composable
 fun NavigationBar(

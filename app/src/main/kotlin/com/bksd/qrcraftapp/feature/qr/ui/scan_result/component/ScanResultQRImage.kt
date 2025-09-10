@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.component
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.component
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.Image
@@ -20,9 +20,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.toBitmap
-import com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model.ScanResultCardStyle
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultCardStyle
 
 @Composable
 fun ScanResultQRImage(

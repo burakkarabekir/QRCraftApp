@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.core.presentation.design_system.navigation_bar
+package com.bksd.qrcraftapp.core.ui.design_system.navigation_bar
 
 import androidx.annotation.DrawableRes
 

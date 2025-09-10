@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.generated_tab
+package com.bksd.qrcraftapp.feature.qr.ui.history.generated_tab
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,9 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.feature.qr.presentation.history.component.EmptyTabContent
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.feature.qr.ui.history.component.EmptyTabContent
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 
 @Composable
 fun GeneratedTab(
@@ -28,7 +28,7 @@ fun GeneratedTab(
         ) {
             items(
                 items = generatedItems,
-                key = { it.id?.toInt() ?: 0 }
+                key = { it.id }
             ) { item ->
                 Card(
                     modifier = Modifier

@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.bksd.qrcraftapp.feature.qr.presentation.history
+package com.bksd.qrcraftapp.feature.qr.ui.history
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -33,13 +33,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.ObserveAsEvents
-import com.bksd.qrcraftapp.core.presentation.util.UiText
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
-import com.bksd.qrcraftapp.feature.qr.presentation.history.generated_tab.GeneratedTab
-import com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.ScannedTabScreen
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
+import com.bksd.qrcraftapp.feature.qr.ui.history.generated_tab.GeneratedTab
+import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.ScannedTabScreen
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -127,7 +126,7 @@ fun HistoryContent(
                     onClick = { coroutineScope.launch { pagerState.animateScrollToPage(0) } },
                     text = {
                         Text(
-                            UiText.StringResource((R.string.history_tab_scanned)).asString(),
+                            stringResource(R.string.history_tab_scanned),
                             style = MaterialTheme.typography.labelMedium,
                             color = if (pagerState.currentPage == 0) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.fillMaxWidth(),
@@ -144,8 +143,7 @@ fun HistoryContent(
                     },
                     text = {
                         Text(
-                            text = UiText.StringResource((R.string.history_tab_generated))
-                                .asString(),
+                            text = stringResource(R.string.history_tab_generated),
                             style = MaterialTheme.typography.labelMedium,
                             color = if (pagerState.currentPage == 1) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.fillMaxWidth(),

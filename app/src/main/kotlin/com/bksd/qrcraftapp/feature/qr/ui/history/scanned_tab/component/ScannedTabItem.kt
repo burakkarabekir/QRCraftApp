@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.component
+package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -20,15 +20,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper.toUi
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import java.time.Instant
 
 @Composable
@@ -69,7 +70,7 @@ fun ScannedTabItem(
                     .padding(8.dp),
                 imageVector = ImageVector.vectorResource(model.type.icon),
                 tint = model.type.contentColor,
-                contentDescription = model.type.text.asString(),
+                contentDescription = stringResource(model.type.textRes),
             )
             Spacer(modifier = Modifier.width(12.dp))
             Column(
@@ -77,7 +78,9 @@ fun ScannedTabItem(
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text = model.title.ifBlank { model.type.text.asString() },
+                    text = if (model.title.isNullOrBlank()) {
+                        stringResource(model.type.textRes)
+                    } else model.title,
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onSurface,
                 )

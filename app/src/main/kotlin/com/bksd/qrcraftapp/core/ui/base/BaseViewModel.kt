@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.core.presentation.base
+package com.bksd.qrcraftapp.core.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,6 +25,7 @@ abstract class BaseViewModel<S, E, A>(initialState: S) : ViewModel() {
     protected fun sendEvent(event: E) {
         viewModelScope.launch { _events.trySend(event) }
     }
+
     protected fun getCurrentState(): S = state.value
     protected fun setState(reducer: S.() -> S) {
         _state.update { it.reducer() }

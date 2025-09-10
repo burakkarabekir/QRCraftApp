@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.selection.component
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.selection.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,14 +23,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.mapper.toUi
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.QRTypeUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
 
 @Composable
 fun CreateQRCard(
@@ -55,7 +56,7 @@ fun CreateQRCard(
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(type.icon),
-            contentDescription = type.text.asString(),
+            contentDescription = stringResource(type.textRes),
             tint = type.contentColor,
             modifier = Modifier
                 .size(32.dp)
@@ -67,7 +68,7 @@ fun CreateQRCard(
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = type.text.asString(),
+            text = stringResource(type.textRes),
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center,

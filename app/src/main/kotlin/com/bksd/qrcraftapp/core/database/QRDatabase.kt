@@ -1,24 +1,21 @@
-package com.bksd.campusechojournal.core.database
+package com.bksd.qrcraftapp.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.bksd.campusechojournal.core.database.echo.EchoEntity
-import com.bksd.campusechojournal.core.database.echo.FloatListTypeConverter
-import com.bksd.campusechojournal.core.database.echo.MoodTypeConverter
-import com.bksd.campusechojournal.core.database.echo.dao.EchoDao
-import com.bksd.campusechojournal.core.database.relation_echo_topic.EchoTopicCrossRef
-import com.bksd.campusechojournal.core.database.topic.TopicEntity
+import com.bksd.qrcraftapp.core.database.qr.converter.QRSourceConverters
+import com.bksd.qrcraftapp.core.database.qr.dao.QRDao
+import com.bksd.qrcraftapp.core.database.qr.entity.QREntity
 
 @Database(
-    entities = [EchoEntity::class, TopicEntity::class, EchoTopicCrossRef::class],
-    version = 1
+    entities = [QREntity::class],
+    version = 1,
+    exportSchema = true,
 )
 
 @TypeConverters(
-    MoodTypeConverter::class,
-    FloatListTypeConverter::class
+    QRSourceConverters::class,
 )
-abstract class EchoDatabase : RoomDatabase() {
-    abstract val echoDao: EchoDao
+abstract class QRDatabase : RoomDatabase() {
+    abstract val qrDao: QRDao
 }

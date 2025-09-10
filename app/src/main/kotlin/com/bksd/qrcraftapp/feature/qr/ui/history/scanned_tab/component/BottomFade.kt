@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.component
+package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints

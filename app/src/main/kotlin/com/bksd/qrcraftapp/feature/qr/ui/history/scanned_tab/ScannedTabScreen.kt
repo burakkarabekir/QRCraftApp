@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab
+package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,15 +15,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bksd.qrcraftapp.core.presentation.design_system.loading.AppLoading
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.ObserveAsEvents
-import com.bksd.qrcraftapp.core.presentation.util.shareQRCode
-import com.bksd.qrcraftapp.feature.qr.presentation.history.component.EmptyTabContent
-import com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.component.BottomFade
-import com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.component.OptionSelectionSheet
-import com.bksd.qrcraftapp.feature.qr.presentation.history.scanned_tab.component.ScannedTabItem
-import com.bksd.qrcraftapp.feature.qr.presentation.model.QRUi
+import com.bksd.qrcraftapp.core.ui.design_system.loading.AppLoading
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
+import com.bksd.qrcraftapp.core.ui.util.shareQRCode
+import com.bksd.qrcraftapp.feature.qr.ui.history.component.EmptyTabContent
+import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component.BottomFade
+import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component.OptionSelectionSheet
+import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component.ScannedTabItem
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -68,11 +68,11 @@ fun ScannedTabContent(
         LazyColumn(
             modifier = modifier.padding(top = 12.dp, start = 16.dp, end = 16.dp)
         ) {
-            items(items = scannedItems, key = {it.id?.toInt() ?: 0}) { item ->
+            items(items = scannedItems, key = { it.id }) { item ->
                 ScannedTabItem(
                     model = item,
                     onClick = { onAction(ScannedTabAction.OnItemClick(item)) },
-                    onLongPress = { onAction(ScannedTabAction.OnItemLongPress(item.id?.toInt() ?: 0)) },
+                    onLongPress = { onAction(ScannedTabAction.OnItemLongPress(item.id)) },
                 )
             }
         }

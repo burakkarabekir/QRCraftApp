@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.create_qr.form.component
+package com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,9 +23,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.button.AppButton
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
-import com.bksd.qrcraftapp.core.presentation.util.UiText
+import com.bksd.qrcraftapp.core.ui.design_system.button.AppButton
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.util.UiText
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
 
 @Composable

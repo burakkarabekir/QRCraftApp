@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.core.presentation.design_system.expandable_text
+package com.bksd.qrcraftapp.core.ui.design_system.expandable_text
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
@@ -18,7 +18,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.bksd.qrcraftapp.R
-import com.bksd.qrcraftapp.core.presentation.design_system.theme.QRCraftAppTheme
+import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 
 private const val ELLIPSIS = "..."
 private const val SPACE_BUFFER = " "
@@ -84,7 +84,7 @@ fun ExpandableText(
             .fillMaxWidth()
             .clickable(
                 enabled = isExpandable,
-                interactionSource = null, // to disable ripple effect
+                interactionSource = null,
                 indication = null
             ) { isExpanded = !isExpanded }
             .animateContentSize(),

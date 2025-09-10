@@ -1,11 +1,10 @@
-package com.bksd.qrcraftapp.feature.qr.presentation.scan_result.model
+package com.bksd.qrcraftapp.feature.qr.ui.scan_result.model
 
 import android.graphics.Bitmap
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.bksd.qrcraftapp.core.presentation.util.UiText
-import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
-import com.bksd.qrcraftapp.feature.qr.presentation.camera.model.QRTypeUi
+import com.bksd.qrcraftapp.core.ui.util.UiText
+import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
 
 data class ScanResultCardState(
     val resultType: QRTypeUi,
@@ -13,6 +12,7 @@ data class ScanResultCardState(
     val resultDescription: UiText,
     val isEditing: Boolean = false,
     val image: Bitmap? = null,
+    val isEditable: Boolean = true,
 )
 
 data class ScanResultCardActions(
