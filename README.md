@@ -1,8 +1,4 @@
-# QR Craft
-
-<p align="center">
-  <img src="path/to/your/logo.png" alt="QR Craft Logo" width="150"/>
-</p>
+# QR Craft App
 
 <p align="center">
   A modern, feature-rich QR code scanner and generator for Android, built with Kotlin and Jetpack Compose.
@@ -16,14 +12,6 @@
 *   **QR Code Generation**: Create custom QR codes for various data types.
 *   **Scan & Creation History**: Keep a persistent history of all scanned and created QR codes.
 *   **Modern UI**: A clean and intuitive user interface built with Material Design 3 components.
-
-## 📸 Screenshots
-
-*(Add screenshots of your app here. For example:)*
-
-| Main Screen               | Scan Screen               | History Screen            |
-|---------------------------|---------------------------|---------------------------|
-| <img src="" width="250"/> | <img src="" width="250"/> | <img src="" width="250"/> |
 
 ## 🏗️ Architecture
 
