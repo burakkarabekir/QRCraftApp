@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.QRCraftApp" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- System splash config -->
+        <item name="android:windowSplashScreenBackground">#273037</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <!-- Optional small brand below the icon -->
+        <!-- <item name="android:windowSplashScreenBrandingImage">@drawable/ic_branding</item> -->
+
+        <!-- Normal app window styles after splash -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>

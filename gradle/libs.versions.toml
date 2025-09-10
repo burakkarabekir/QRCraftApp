@@ -1,0 +1,173 @@
+[versions]
+# Toolchain
+kotlin = "2.2.10"
+agp = "8.13.0"
+ksp = "2.2.10-2.0.2"
+
+# AndroidX core
+coreKtx = "1.17.0"
+lifecycle = "2.9.3"
+activityCompose = "1.10.1"
+
+# Compose
+composeBom = "2025.08.01"
+
+# Material
+material3 = "1.5.0-alpha03"
+compose-material-icons = "1.7.8"
+
+# Navigation 3
+mockitoAndroid = "5.19.0"
+mockitoCore = "5.19.0"
+nav3Core = "1.0.0-alpha07"
+nav3Lifecycle = "2.8.4"
+
+# Data / DB
+room = "2.7.2"
+datastore = "1.1.7"
+room-plugin = "2.6.1"
+
+# Camera / Vision
+camerax = "1.4.2"
+mlkitBarcode = "17.3.0"
+zxing = "3.5.3"
+# DI
+koin = "4.1.0"
+
+# Serialization
+kotlinSerialization = "1.9.0"
+
+# Utils
+coil = "2.7.0"
+
+# Logging
+timber = "5.0.1"
+# splash
+splash = "1.0.1"
+
+# Testing
+junit = "4.13.2"
+androidxTestExt = "1.3.0"
+espresso = "3.7.0"
+mockk = "1.14.5"
+turbine = "1.2.1"
+foundationLayout = "1.9.0"
+material3WindowSizeClass = "1.3.2"
+uiTestJunit4 = "1.9.0"
+
+[libraries]
+# AndroidX core
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+# Compose (versioned by BOM)
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
+material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "compose-material-icons" }
+
+# Navigation 3 (no old Navigation lib)
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoAndroid" }
+nav3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+nav3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+androidx-lifecycle-viewmodel-nav3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "nav3Lifecycle" }
+
+# Persistence
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+# Camera / MLKit / Zxing
+camerax-core = { group = "androidx.camera", name = "camera-core", version.ref = "camerax" }
+camerax-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
+camerax-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+camerax-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
+mlkit-barcode = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "mlkitBarcode" }
+ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+zxing = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
+
+# DI (Koin only)
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+
+# Serialization / Utils
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+# Logging
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+
+# Splash
+splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash" }
+
+# Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExt" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+androidx-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
+androidx-material3-window-size-class1 = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "material3WindowSizeClass" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4" }
+
+[bundles]
+compose-core = [
+    "compose-ui",
+    "compose-ui-tooling-preview",
+    "compose-foundation",
+    "compose-runtime",
+    "compose-material3",
+    "material-icons-core",
+    "activity-compose"
+]
+compose-debug = [
+    "compose-ui-tooling"
+]
+nav3 = [
+    "nav3-runtime",
+    "nav3-ui",
+    "androidx-lifecycle-viewmodel-nav3"
+]
+camerax = [
+    "camerax-core",
+    "camerax-camera2",
+    "camerax-lifecycle",
+    "camerax-view"
+]
+room = [
+    "room-runtime",
+    "room-ktx"
+]
+koin = [
+    "koin-android",
+    "koin-compose"
+]
+qr = [
+    "mlkit-barcode",
+    "zxing"
+]
+testing-unit = [
+    "junit",
+    "mockk",
+    "turbine"
+]
+testing-android = [
+    "androidx-test-ext",
+    "espresso-core"
+]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+androidx-room = { id = "androidx.room", version.ref = "room-plugin" }

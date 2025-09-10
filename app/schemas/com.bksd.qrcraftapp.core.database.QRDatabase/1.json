@@ -1,0 +1,71 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "f7bc132710cfe8676a55967bdbc94782",
+    "entities": [
+      {
+        "tableName": "qr_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`qrId` INTEGER PRIMARY KEY AUTOINCREMENT, `type` TEXT NOT NULL, `title` TEXT NOT NULL, `format` INTEGER NOT NULL, `rawValue` TEXT NOT NULL, `displayValue` TEXT NOT NULL, `timestamp` INTEGER, `qrSource` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "qrId",
+            "columnName": "qrId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "format",
+            "columnName": "format",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawValue",
+            "columnName": "rawValue",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayValue",
+            "columnName": "displayValue",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "qrSource",
+            "columnName": "qrSource",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "qrId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f7bc132710cfe8676a55967bdbc94782')"
+    ]
+  }
+}
