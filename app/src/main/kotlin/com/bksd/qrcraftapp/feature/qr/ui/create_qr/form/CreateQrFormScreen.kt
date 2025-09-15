@@ -2,10 +2,15 @@
 
 package com.bksd.qrcraftapp.feature.qr.ui.create_qr.form
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -24,6 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bksd.qrcraftapp.R
 import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
@@ -38,6 +44,7 @@ import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import com.bksd.qrcraftapp.feature.qr.ui.model.ScanResultScreenType
 import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultUi
 import org.koin.androidx.compose.koinViewModel
+import kotlin.math.max
 
 @Composable
 fun CreateQrFormScreen(
@@ -51,6 +58,7 @@ fun CreateQrFormScreen(
     ObserveAsEvents(viewModel.events) { event ->
         when (event) {
             CreateQrFormEvent.OnNavigateBack -> onNavigateBack()
+            is CreateQrFormEvent.ShowError -> Toast.makeText(context, event.message, Toast.LENGTH_LONG).show()
             is CreateQrFormEvent.OnNavigateToPreview -> onNavigateToPreview(
                 ScanResultUi(
                     screenType = ScanResultScreenType.PREVIEW,
@@ -111,10 +119,16 @@ fun CreateQrFormContent(
             )
         }
     ) { innerPadding ->
-        Column(
-            modifier = modifier
+        Box(
+            modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
+            contentAlignment = Alignment.TopCenter
+        ) {
+        Column(
+            modifier = modifier
+                .widthIn(max = 480.dp)
+                .fillMaxWidth(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -130,11 +144,33 @@ fun CreateQrFormContent(
             )
         }
     }
+    }
 }
 
 @Preview
 @Composable
 private fun Preview() {
+    QRCraftAppTheme {
+        CreateQrFormContent(
+            uiModel = CreateQRFormUiModel(
+                items = buildItems(QRType.CONTACT),
+                title = QRTypeUi(
+                    type = QRType.CONTACT,
+                    textRes = QRType.CONTACT.toUi().textRes,
+                    icon = 0,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ).textRes,
+                isValid = false,
+            ),
+            onAction = {},
+        )
+    }
+}
+
+@Preview(device = "spec:width=1280dp,height=800dp,dpi=320", showSystemUi = true)
+@Composable
+private fun CreateQRFormScreenTabletPreview() {
     QRCraftAppTheme {
         CreateQrFormContent(
             uiModel = CreateQRFormUiModel(

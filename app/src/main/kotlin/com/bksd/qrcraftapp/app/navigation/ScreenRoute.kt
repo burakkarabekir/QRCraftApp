@@ -4,6 +4,7 @@ import androidx.navigation3.runtime.NavKey
 import com.bksd.qrcraftapp.R
 import com.bksd.qrcraftapp.core.ui.design_system.navigation_bar.NavigationBarItem
 import com.bksd.qrcraftapp.core.ui.util.UiText
+import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
 import com.bksd.qrcraftapp.feature.qr.ui.model.ScanResultScreenType
 import kotlinx.serialization.Serializable
@@ -42,6 +43,7 @@ data class ScanResultScreenRoute(
     val format: Int = 0,
     val barcodeImage: String,
     val id: Long? = null,
+    val qrSource: QRSource
 ) : NavKey
 
 @Serializable

@@ -1,5 +1,7 @@
 package com.bksd.qrcraftapp.app.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,11 +33,12 @@ import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultUi
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
+@RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
 @Composable
 fun NavigationRoot(
     modifier: Modifier = Modifier,
 ) {
-    val backStack = rememberNavBackStack(HistoryScreenRoute)
+    val backStack = rememberNavBackStack(MainScreenRoute)
     val currentEntry = backStack.last()
     val showBottomBar = currentEntry is NavigationBarItem
 
@@ -86,6 +89,7 @@ fun NavigationRoot(
                                     barcodeImage = it.qrUi.generatedQRPayload(),
                                     format = it.qrUi.format,
                                     title = it.qrUi.title.orEmpty(),
+                                    qrSource = it.qrUi.qrSource
                                 )
                             )
                         }
@@ -103,13 +107,14 @@ fun NavigationRoot(
                         onNavigateScanResult = {
                             backStack.add(
                                 ScanResultScreenRoute(
-                                    screenType = ScanResultScreenType.SCAN_RESULT,
+                                    screenType = ScanResultScreenType.PREVIEW,
                                     type = it.type.type,
                                     title = it.title.orEmpty(),
                                     rawValue = it.rawValue,
                                     displayValue = it.displayValue,
                                     barcodeImage = it.generatedQRPayload(),
                                     id = it.id,
+                                    qrSource = it.qrSource
                                 )
                             )
                         }
@@ -129,7 +134,7 @@ fun NavigationRoot(
                                         displayValue = key.displayValue,
                                         format = key.format,
                                         timestamp = null,
-                                        qrSource = QRSource.SCANNED
+                                        qrSource = key.qrSource
                                     )
                                 )
                             )
@@ -152,7 +157,8 @@ fun NavigationRoot(
                                     barcodeImage = it.qrUi.generatedQRPayload(),
                                     format = it.qrUi.format,
                                     title = it.qrUi.title.orEmpty(),
-                                    id = it.qrUi.id
+                                    id = it.qrUi.id,
+                                    qrSource = QRSource.GENERATED
                                 )
                             )
                         },

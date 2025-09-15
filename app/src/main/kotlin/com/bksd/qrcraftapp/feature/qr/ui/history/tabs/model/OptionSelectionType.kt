@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.model
+package com.bksd.qrcraftapp.feature.qr.ui.history.tabs.model
 
 import androidx.compose.ui.graphics.Color
 import com.bksd.qrcraftapp.R

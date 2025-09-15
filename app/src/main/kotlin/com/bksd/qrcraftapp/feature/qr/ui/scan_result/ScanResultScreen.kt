@@ -33,6 +33,7 @@ import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
 import com.bksd.qrcraftapp.core.ui.util.UiText
 import com.bksd.qrcraftapp.core.ui.util.copyToClipboard
 import com.bksd.qrcraftapp.core.ui.util.shareQRCode
+import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
 import com.bksd.qrcraftapp.feature.qr.ui.camera.mapper.toUi
 import com.bksd.qrcraftapp.feature.qr.ui.model.ScanResultScreenType
@@ -123,7 +124,7 @@ fun ScanResultContent(
                     title = uiModel.editedText ?: stringResource(type.textRes),
                     resultDescription = UiText.Dynamic(uiModel.displayValue),
                     isEditing = uiModel.isEditing,
-                    isEditable = uiModel.screenType == ScanResultScreenType.SCAN_RESULT,
+                    isEditable = uiModel.screenType == ScanResultScreenType.PREVIEW,
                     image = uiModel.barcodeImage
                 ),
                 actions = ScanResultCardActions(
@@ -150,6 +151,7 @@ private fun Preview() {
                 displayValue = "123123",
                 editedText = UiText.Empty.toString(),
                 type = QRType.TEXT,
+                qrSource = QRSource.SCANNED,
             ),
         )
     }

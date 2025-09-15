@@ -20,8 +20,8 @@ interface QRDao {
     @Query("DELETE FROM qr_table WHERE qrId = :id")
     suspend fun delete(id: Long)
 
-    @Query("SELECT * FROM qr_table WHERE qrSource = :qrSource ORDER BY timestamp DESC")
-    fun observeQRListByType(qrSource: QRSource): Flow<List<QREntity>>
+    @Query("SELECT * FROM qr_table ORDER BY timestamp DESC")
+    fun observeQRList(): Flow<List<QREntity>>
 
     @Query("SELECT * FROM qr_table WHERE qrId = :id")
     fun getQrEntityById(id: Long): Flow<QREntity>

@@ -10,7 +10,7 @@ import java.time.Instant
 import java.util.UUID
 
 data class QRUi(
-    val id: Long = UUID.randomUUID().mostSignificantBits and Long.MAX_VALUE,
+    val id: Long = 0L,
     val type: QRTypeUi,
     val title: String? = null,
     val rawValue: String,

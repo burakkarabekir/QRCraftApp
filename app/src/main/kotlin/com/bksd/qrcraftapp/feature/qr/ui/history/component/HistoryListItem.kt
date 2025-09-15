@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component
+package com.bksd.qrcraftapp.feature.qr.ui.history.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -33,7 +33,7 @@ import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import java.time.Instant
 
 @Composable
-fun ScannedTabItem(
+fun HistoryListItem(
     model: QRUi,
     modifier: Modifier = Modifier,
     contentMaxLines: Int = 2,
@@ -42,7 +42,7 @@ fun ScannedTabItem(
 ) {
     Surface(
         modifier = modifier
-            .fillMaxWidth()
+            .width(552.dp)
             .wrapContentHeight()
             .padding(bottom = 8.dp),
         shape = RoundedCornerShape(16.dp),
@@ -106,7 +106,7 @@ fun ScannedTabItem(
 @Composable
 private fun Preview() {
     QRCraftAppTheme {
-        ScannedTabItem(
+        HistoryListItem(
             model = QRUi(
                 type = QRType.TEXT.toUi(),
                 title = "Edited Title",

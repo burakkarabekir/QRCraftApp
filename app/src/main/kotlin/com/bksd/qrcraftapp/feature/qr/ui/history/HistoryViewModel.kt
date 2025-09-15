@@ -3,6 +3,7 @@ package com.bksd.qrcraftapp.feature.qr.ui.history
 import androidx.lifecycle.viewModelScope
 import com.bksd.qrcraftapp.core.ui.base.BaseViewModel
 import com.bksd.qrcraftapp.feature.qr.domain.data_source.QRDataSource
+import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.ui.history.mapper.toQRUi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
@@ -24,14 +25,20 @@ class HistoryViewModel(
     }
 
     private fun observeQRList() = viewModelScope.launch {
-        qrDataSource.observeScannedQRList()
+        qrDataSource.observeQRList()
             .onStart { setState { copy(isLoading = true) } }
             .catch { setState { copy(isLoading = false) } }
             .collect { qrList ->
                 setState {
                     copy(
                         isLoading = false,
-                        qrList = qrList.map { it.toQRUi() })
+                        scannedQRList = qrList
+                            .filter { it.qrSource == QRSource.SCANNED }
+                            .map { it.toQRUi() },
+                        generatedQRList = qrList
+                            .filter { it.qrSource == QRSource.GENERATED }
+                            .map { it.toQRUi() }
+                    )
                 }
             }
     }

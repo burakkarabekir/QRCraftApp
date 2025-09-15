@@ -7,7 +7,6 @@ interface QRDataSource {
     suspend fun upsert(qr: QR)
     suspend fun insert(qr: QR): Long
     suspend fun delete(id: Long)
-    fun observeScannedQRList(): Flow<List<QR>>
-    fun observeGeneratedQRList(): Flow<List<QR>>
+    fun observeQRList(): Flow<List<QR>>
     fun getQrEntityById(id: Long): Flow<QR>
 }

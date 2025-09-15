@@ -30,8 +30,8 @@ fun ScanResultUi.toQR() = QR(
     title = qrUi.title.orEmpty(),
     rawValue = qrUi.rawValue,
     displayValue = qrUi.displayValue,
-    timestamp = qrUi.timestamp ?: java.time.Instant.now(),
+    timestamp = qrUi.timestamp,
     qrSource = QRSource.SCANNED,
     format = qrUi.format,
-    id = qrUi.id
+    id = qrUi.id,
 )

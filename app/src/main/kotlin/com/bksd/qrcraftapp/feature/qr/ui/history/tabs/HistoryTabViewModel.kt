@@ -1,4 +1,4 @@
-package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab
+package com.bksd.qrcraftapp.feature.qr.ui.history.tabs
 
 import androidx.lifecycle.viewModelScope
 import com.bksd.qrcraftapp.core.ui.base.BaseViewModel
@@ -7,51 +7,56 @@ import com.bksd.qrcraftapp.feature.qr.ui.util.QRCodeGenerator.encodeBitmap
 import com.bksd.qrcraftapp.feature.qr.ui.util.toZxingFormat
 import kotlinx.coroutines.launch
 
-class ScannedTabViewModel(
+class HistoryTabViewModel(
     private val qrDataSource: QRDataSource,
-) : BaseViewModel<ScannedTabState, ScannedTabEvent, ScannedTabAction>(ScannedTabState()) {
+) : BaseViewModel<ScannedTabState, HistoryTabEvent, HistoryTabAction>(ScannedTabState()) {
 
-    override fun onAction(action: ScannedTabAction) {
+    override fun onAction(action: HistoryTabAction) {
         when (action) {
-            ScannedTabAction.OnDismissBottomSheet -> {
-                setState {
-                    copy(showOptionSheet = false)
-                }
-            }
-
-            is ScannedTabAction.OnDeleteClick -> {
-                delete(action.id)
-                setState {
-                    copy(showOptionSheet = false)
-                }
-            }
-
-            is ScannedTabAction.OnItemClick -> {
-                sendEvent(ScannedTabEvent.OnNavigateScanResult(action.model))
-            }
-
-            is ScannedTabAction.OnItemLongPress -> {
+            HistoryTabAction.OnDismissBottomSheet -> {
                 setState {
                     copy(
-                        showOptionSheet = true,
-                        selectedItemIdForOptions = action.id
+                        uiModel = uiModel.copy(showOptionSheet = false)
                     )
                 }
             }
 
-            is ScannedTabAction.OnShareClick -> {
+            is HistoryTabAction.OnDeleteClick -> {
+                delete(action.id)
+                setState {
+                    copy(
+                        uiModel = uiModel.copy(showOptionSheet = false))
+                }
+            }
+
+            is HistoryTabAction.OnItemClick -> {
+                sendEvent(HistoryTabEvent.OnNavigateScanResult(action.model))
+            }
+
+            is HistoryTabAction.OnItemLongPress -> {
+                setState {
+                    copy(
+                        uiModel = uiModel.copy( showOptionSheet = true,
+                        selectedItemIdForOptions = action.id
+                        )
+                    )
+                }
+            }
+
+            is HistoryTabAction.OnShareClick -> {
                 viewModelScope.launch {
                     qrDataSource.getQrEntityById(action.id).collect { model ->
                         encodeBitmap(
                             model.rawValue,
                             toZxingFormat(model.format),
                         )?.let {
-                            sendEvent(ScannedTabEvent.Share(it))
+                            sendEvent(HistoryTabEvent.Share(it))
                         }
                     }
                 }
                 setState {
-                    copy(showOptionSheet = false)
+                    copy(
+                        uiModel = uiModel.copy(showOptionSheet = false))
                 }
             }
         }

@@ -21,8 +21,8 @@ class MainActivity : ComponentActivity() {
 
                 SideEffect {
                     enableEdgeToEdge(
-                        statusBarStyle = SystemBarStyle.light(backgroundColor, backgroundColor),
-                        navigationBarStyle = SystemBarStyle.light(backgroundColor, backgroundColor)
+                        statusBarStyle = SystemBarStyle.auto(backgroundColor, backgroundColor),
+                        navigationBarStyle = SystemBarStyle.auto(backgroundColor, backgroundColor)
                     )
                 }
 

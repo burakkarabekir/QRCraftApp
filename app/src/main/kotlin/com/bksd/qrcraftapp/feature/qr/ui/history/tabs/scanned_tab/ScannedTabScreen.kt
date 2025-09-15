@@ -1,8 +1,11 @@
-package com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab
+package com.bksd.qrcraftapp.feature.qr.ui.history.tabs.scanned_tab
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -20,9 +23,13 @@ import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
 import com.bksd.qrcraftapp.core.ui.util.shareQRCode
 import com.bksd.qrcraftapp.feature.qr.ui.history.component.EmptyTabContent
-import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component.BottomFade
-import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component.OptionSelectionSheet
-import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.component.ScannedTabItem
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.component.BottomFade
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.component.OptionSelectionSheet
+import com.bksd.qrcraftapp.feature.qr.ui.history.component.HistoryListItem
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.HistoryTabAction
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.HistoryTabEvent
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.ScannedTabUiModel
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.HistoryTabViewModel
 import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import org.koin.androidx.compose.koinViewModel
 
@@ -32,15 +39,15 @@ fun ScannedTabScreen(
     isLoading: Boolean = true,
     scannedItems: List<QRUi> = emptyList(),
     onNavigateScanResult: (QRUi) -> Unit = {},
-    viewModel: ScannedTabViewModel = koinViewModel(),
+    viewModel: HistoryTabViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     ObserveAsEvents(viewModel.events) { event ->
         when (event) {
-            is ScannedTabEvent.OnNavigateScanResult -> onNavigateScanResult(event.model)
-            is ScannedTabEvent.Share -> context.shareQRCode(bitmap = event.qr)
+            is HistoryTabEvent.OnNavigateScanResult -> onNavigateScanResult(event.model)
+            is HistoryTabEvent.Share -> context.shareQRCode(bitmap = event.qr)
         }
     }
     if (isLoading) {
@@ -49,7 +56,7 @@ fun ScannedTabScreen(
         EmptyTabContent()
     } else {
         ScannedTabContent(
-            state = state,
+            uiModel = state.uiModel,
             scannedItems = scannedItems,
             modifier = modifier.fillMaxSize(),
             onAction = viewModel::onAction
@@ -59,20 +66,24 @@ fun ScannedTabScreen(
 
 @Composable
 fun ScannedTabContent(
-    state: ScannedTabState,
+    uiModel: ScannedTabUiModel,
     modifier: Modifier = Modifier,
-    onAction: (ScannedTabAction) -> Unit = {},
+    onAction: (HistoryTabAction) -> Unit = {},
     scannedItems: List<QRUi>,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         LazyColumn(
             modifier = modifier.padding(top = 12.dp, start = 16.dp, end = 16.dp)
+                .fillMaxHeight()
+                .widthIn(max = 600.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             items(items = scannedItems, key = { it.id }) { item ->
-                ScannedTabItem(
+                HistoryListItem(
                     model = item,
-                    onClick = { onAction(ScannedTabAction.OnItemClick(item)) },
-                    onLongPress = { onAction(ScannedTabAction.OnItemLongPress(item.id)) },
+                    onClick = { onAction(HistoryTabAction.OnItemClick(item)) },
+                    onLongPress = { onAction(HistoryTabAction.OnItemLongPress(item.id)) },
                 )
             }
         }
@@ -83,26 +94,26 @@ fun ScannedTabContent(
                 .zIndex(1f),
         )
         OptionSelectionSheet(
-            isVisible = state.showOptionSheet,
+            isVisible = uiModel.showOptionSheet,
             onShareClick = {
-                state.selectedItemIdForOptions?.let {
+                uiModel.selectedItemIdForOptions?.let {
                     onAction(
-                        ScannedTabAction.OnShareClick(
+                        HistoryTabAction.OnShareClick(
                             it
                         )
                     )
                 }
             },
             onDeleteClick = {
-                state.selectedItemIdForOptions?.let {
+                uiModel.selectedItemIdForOptions?.let {
                     onAction(
-                        ScannedTabAction.OnDeleteClick(
+                        HistoryTabAction.OnDeleteClick(
                             it
                         )
                     )
                 }
             },
-            onDismiss = { onAction(ScannedTabAction.OnDismissBottomSheet) }
+            onDismiss = { onAction(HistoryTabAction.OnDismissBottomSheet) }
         )
     }
 }
@@ -112,7 +123,7 @@ fun ScannedTabContent(
 private fun Preview() {
     QRCraftAppTheme {
         ScannedTabContent(
-            state = ScannedTabState(),
+            uiModel = ScannedTabUiModel(),
             scannedItems = emptyList()
         )
     }

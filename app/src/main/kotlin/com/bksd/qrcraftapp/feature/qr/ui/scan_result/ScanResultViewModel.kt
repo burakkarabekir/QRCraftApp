@@ -15,7 +15,7 @@ import com.bksd.qrcraftapp.feature.qr.ui.scan_result.model.ScanResultUi
 
 class ScanResultViewModel(
     private val qrDataSource: QRDataSource,
-    private val scanResult: ScanResultUi,
+    scanResult: ScanResultUi,
 ) :
     BaseViewModel<ScanResultState, ScanResultEvent, ScanResultAction>(
         ScanResultState(
@@ -28,6 +28,7 @@ class ScanResultViewModel(
                 type = scanResult.qrUi.type.type,
                 editedText = scanResult.qrUi.title,
                 barcodeImage = scanResult.qrUi.getQRBitmap(),
+                qrSource = scanResult.qrUi.qrSource,
             ),
         )
     ) {
@@ -40,7 +41,7 @@ class ScanResultViewModel(
             OnCopyClick -> sendEvent(Copy(content = uiModel.scannedValue))
             OnShareClick -> uiModel.barcodeImage?.let { sendEvent(Share(qr = it)) }
             OnBackClick -> {
-                if (uiModel.screenType == ScanResultScreenType.SCAN_RESULT && uiModel.isEditing) {
+                if (uiModel.screenType == ScanResultScreenType.PREVIEW && uiModel.isEditing) {
                     uiModel.editedText?.let { saveTitle(it) }
                 }
                 sendEvent(ScanResultEvent.OnNavigateBack)

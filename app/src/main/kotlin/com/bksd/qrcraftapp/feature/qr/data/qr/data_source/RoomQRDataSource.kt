@@ -35,15 +35,9 @@ class RoomQRDataSource(
             .onFailure { Timber.e(it, "Failed to delete qr") }
     }
 
-    override fun observeScannedQRList(): Flow<List<QR>> {
+    override fun observeQRList(): Flow<List<QR>> {
         return qrDao
-            .observeQRListByType(QRSource.SCANNED)
-            .map { entities -> entities.map { it.toQR() } }
-    }
-
-    override fun observeGeneratedQRList(): Flow<List<QR>> {
-        return qrDao
-            .observeQRListByType(QRSource.GENERATED)
+            .observeQRList()
             .map { entities -> entities.map { it.toQR() } }
     }
 

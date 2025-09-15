@@ -4,16 +4,23 @@ import android.graphics.Bitmap
 import androidx.lifecycle.viewModelScope
 import com.bksd.qrcraftapp.core.ui.base.BaseViewModel
 import com.bksd.qrcraftapp.core.ui.util.toBase64
-import com.bksd.qrcraftapp.feature.qr.domain.model.QRType
+import com.bksd.qrcraftapp.feature.qr.domain.data_source.QRDataSource
+import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
 import com.bksd.qrcraftapp.feature.qr.ui.camera.model.QRTypeUi
 import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.FormInputItem
-import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.FormInputType
 import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.component.buildItems
+import com.bksd.qrcraftapp.feature.qr.ui.create_qr.form.util.BuildQrPayload
+import com.bksd.qrcraftapp.feature.qr.ui.history.mapper.toQR
+import com.bksd.qrcraftapp.feature.qr.ui.main.mapper.toQR
+import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import com.bksd.qrcraftapp.feature.qr.ui.util.QRCodeGenerator
 import kotlinx.coroutines.launch
+import kotlin.text.insert
 
 class CreateQrFormViewModel(
-    type: QRTypeUi,
+   private val type: QRTypeUi,
+   private val buildQrPayload: BuildQrPayload,
+   private val qrDataSource: QRDataSource,
 ) : BaseViewModel<CreateQrFormState, CreateQrFormEvent, CreateQrFormAction>(
     CreateQrFormState(
         uiModel = CreateQRFormUiModel(
@@ -23,7 +30,6 @@ class CreateQrFormViewModel(
     )
 ) {
 
-    val qrType = type
     override fun onAction(action: CreateQrFormAction) {
         when (action) {
             CreateQrFormAction.OnNavigateBackClick -> sendEvent(CreateQrFormEvent.OnNavigateBack)
@@ -52,18 +58,32 @@ class CreateQrFormViewModel(
     }
 
     private fun onGenerateClick() {
-        val payload = buildPayload(qrType)
-        var qrBitmap: Bitmap? = null
-        viewModelScope.launch { qrBitmap = QRCodeGenerator.generateQRCode(payload) }
-        sendEvent(
-            CreateQrFormEvent.OnNavigateToPreview(
-                qrBitmap = qrBitmap?.toBase64().orEmpty(),
-                rawValue = payload,
-                qrType = qrType,
-                id = null,
-                displayValue = payload,
-            )
-        )
+        val payload = buildQrPayload(type.type, state.value.uiModel.items)
+        viewModelScope.launch {
+            try {
+                val qrBitmap = QRCodeGenerator.generateQRCode(payload)
+                val qr = QRUi(
+                    rawValue = payload,
+                    displayValue = payload,
+                    type = type,
+                    qrSource = QRSource.GENERATED,
+                )
+                val qrToSave = qr.toQR()
+                val savedId = qrDataSource.insert(qrToSave)
+
+                sendEvent(
+                    CreateQrFormEvent.OnNavigateToPreview(
+                        qrBitmap = qrBitmap?.toBase64().orEmpty(),
+                        rawValue = payload,
+                        qrType = type,
+                        id = savedId,
+                        displayValue = payload,
+                    )
+                )
+            } catch (e: Exception) {
+                sendEvent(CreateQrFormEvent.ShowError(e.message ?: "Failed to generate QR code"))
+            }
+        }
     }
 
     private fun validateForm(items: List<FormInputItem>): Boolean {
@@ -72,35 +92,6 @@ class CreateQrFormViewModel(
                 item.value.isNotBlank()
             } else {
                 true
-            }
-        }
-    }
-
-    fun buildPayload(type: QRTypeUi): String {
-        val values = state.value.uiModel.items.associate { it.type.name to it.value }
-        return when (type.type) {
-            QRType.TEXT, QRType.LINK -> values.values.firstOrNull().orEmpty()
-            QRType.PHONE -> "tel:${values.values.firstOrNull().orEmpty()}"
-            QRType.GEO -> "geo:${values[FormInputType.GEO_LAT.name]},${values[FormInputType.GEO_LON.name]}"
-            QRType.WIFI -> """
-                        WIFI:T:${values[FormInputType.WIFI_ENCRYPTION.name] ?: "WPA"};
-                        S:${values[FormInputType.WIFI_SSID.name].orEmpty()};
-                        P:${values[FormInputType.WIFI_PASSWORD.name].orEmpty()};;
-                    """.trimIndent()
-
-            QRType.CONTACT -> buildString {
-                appendLine("BEGIN:VCARD")
-                appendLine("VERSION:3.0")
-                values[FormInputType.CONTACT_NAME.name]?.takeIf { it.isNotBlank() }?.let {
-                    appendLine("FN:$it") // full name
-                }
-                values[FormInputType.CONTACT_PHONE.name]?.takeIf { it.isNotBlank() }?.let {
-                    appendLine("TEL:$it")
-                }
-                values[FormInputType.CONTACT_EMAIL.name]?.takeIf { it.isNotBlank() }?.let {
-                    appendLine("EMAIL:$it")
-                }
-                appendLine("END:VCARD")
             }
         }
     }

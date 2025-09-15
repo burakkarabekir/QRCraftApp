@@ -12,7 +12,7 @@ fun ScanResultUiModel.toQR(): QR = QR(
     rawValue = scannedValue,
     displayValue = displayValue,
     timestamp = Instant.now(),
-    qrSource = QRSource.SCANNED,
+    qrSource = qrSource,
     title = editedText.orEmpty(),
-    format = format
+    format = format,
 )

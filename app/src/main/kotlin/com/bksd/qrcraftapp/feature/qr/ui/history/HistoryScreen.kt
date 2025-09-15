@@ -35,9 +35,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bksd.qrcraftapp.R
 import com.bksd.qrcraftapp.core.ui.design_system.theme.QRCraftAppTheme
 import com.bksd.qrcraftapp.core.ui.util.ObserveAsEvents
-import com.bksd.qrcraftapp.feature.qr.domain.model.QRSource
-import com.bksd.qrcraftapp.feature.qr.ui.history.generated_tab.GeneratedTab
-import com.bksd.qrcraftapp.feature.qr.ui.history.scanned_tab.ScannedTabScreen
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.generated_tab.GeneratedTabScreen
+import com.bksd.qrcraftapp.feature.qr.ui.history.tabs.scanned_tab.ScannedTabScreen
 import com.bksd.qrcraftapp.feature.qr.ui.model.QRUi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -74,8 +73,6 @@ fun HistoryContent(
     onAction: (HistoryAction) -> Unit,
 ) {
     val tabIndex = pagerState.currentPage
-    val scannedItems = state.qrList.filter { it.qrSource == QRSource.SCANNED }
-    val generatedItems = state.qrList.filter { it.qrSource == QRSource.GENERATED }
     Scaffold(
         modifier = modifier,
         containerColor = MaterialTheme.colorScheme.onSurface,
@@ -163,13 +160,14 @@ fun HistoryContent(
                     0 -> ScannedTabScreen(
                         modifier = Modifier.fillMaxSize(),
                         isLoading = state.isLoading,
-                        scannedItems = scannedItems,
+                        scannedItems = state.scannedQRList,
                         onNavigateScanResult = { onAction(HistoryAction.OnNavigateScanResult(it)) }
                     )
 
-                    1 -> GeneratedTab(
+                    1 -> GeneratedTabScreen(
                         modifier = Modifier.fillMaxSize(),
-                        generatedItems = generatedItems
+                        generatedItems = state.generatedQRList,
+                        onNavigateScanResult = { onAction(HistoryAction.OnNavigateScanResult(it)) }
                     )
                 }
             }
